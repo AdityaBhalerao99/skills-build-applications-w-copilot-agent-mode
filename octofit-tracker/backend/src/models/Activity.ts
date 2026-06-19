@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 interface Activity {
-  userId: string
+  userId: Types.ObjectId
   type: string
   durationMinutes: number
   caloriesBurned: number
@@ -10,7 +10,7 @@ interface Activity {
 
 const activitySchema = new Schema<Activity>(
   {
-    userId: { type: String, required: true },
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     type: { type: String, required: true },
     durationMinutes: { type: Number, required: true },
     caloriesBurned: { type: Number, required: true },
